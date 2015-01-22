@@ -6,14 +6,17 @@
   "contributors": [
     "Alon Salant <alon@salant.org>"
   ],
-  "license": "Private",
+  "license": "MIT",
+  "keywords": [
+    "mongoose plugin"
+  ],
   "main": "lib/timestamps.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/goodeggs/Projects.git"
+    "url": "git://github.com/goodeggs/mongoose-timestamps.git"
   },
-  "homepage": "https://github.com/goodeggs/Projects",
-  "bugs": "https://github.com/goodeggs/Projects/issues",
+  "homepage": "https://github.com/goodeggs/mongoose-timestamps",
+  "bugs": "https://github.com/goodeggs/mongoose-timestamps/issues",
   "dependencies": {
     "node-clock": "~0.1.1"
   },

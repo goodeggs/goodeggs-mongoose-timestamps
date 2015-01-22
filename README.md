@@ -4,8 +4,8 @@ Adds createdAt and updatedAt fields to any schema.
 
 Uses `node-clock` internally so stubbing `clock.now` will determine time value used for model timestamps.
 
-[![Build Status](https://magnum.travis-ci.com/goodeggs/Projects.png)](https://magnum.travis-ci.com/goodeggs/Projects)
-
+[![Build Status](http://img.shields.io/travis/goodeggs/mongoose-timestamps.svg?style=flat-square)](https://travis-ci.org/goodeggs/mongoose-timestamps)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/goodeggs/mongoose-timestamps/blob/master/LICENSE.md)
 
 ## Usage
 
@@ -20,11 +20,13 @@ schema = new mongoose.Schema {}
 schema.plugin timestamps
 ```
 
-
 ## Contributing
 
+Please follow our [Code of Conduct](https://github.com/goodeggs/mongoose-timestamps/blob/master/CODE_OF_CONDUCT.md)
+when contributing to this project.
+
 ```
-$ git clone https://github.com/goodeggs/Projects && cd Projects
+$ git clone https://github.com/goodeggs/mongoose-timestamps && cd mongoose-timestamps
 $ npm install
 $ npm test
 ```
