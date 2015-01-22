@@ -1,0 +1,38 @@
+{
+  "name": "mongoose-timestamps",
+  "version": "1.0.0",
+  "description": "Adds createdAt and updatedAt fields to any schema",
+  "author": "Good Eggs <open-source@goodeggs.com>",
+  "contributors": [
+    "Alon Salant <alon@salant.org>"
+  ],
+  "license": "Private",
+  "main": "lib/timestamps.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/goodeggs/Projects.git"
+  },
+  "homepage": "https://github.com/goodeggs/Projects",
+  "bugs": "https://github.com/goodeggs/Projects/issues",
+  "dependencies": {
+    "node-clock": "~0.1.1"
+  },
+  "devDependencies": {
+    "coffee-script": ">=1.8.x",
+    "mocha": "~1.x.x",
+    "mongoose": "~3.8.21",
+    "chai": "~1.10.0",
+    "sinon": "~1.12.2",
+    "mocha-sinon": "~1.1.4"
+  },
+  "scripts": {
+    "compile": "coffee --bare --compile --output lib/ src/",
+    "prepublish": "npm run compile",
+    "pretest": "npm run compile",
+    "test": "mocha"
+  },
+  "publishConfig": {
+    "registry": "https://goodeggs.registry.nodejitsu.com/",
+    "always-auth": true
+  }
+}
