@@ -1,6 +1,8 @@
 # mongoose-timestamps
 
-Adds createdAt and updatedAt fields to any schema
+Adds createdAt and updatedAt fields to any schema.
+
+Uses `node-clock` internally so stubbing `clock.now` will determine time value used for model timestamps.
 
 [![Build Status](https://magnum.travis-ci.com/goodeggs/Projects.png)](https://magnum.travis-ci.com/goodeggs/Projects)
 
@@ -12,7 +14,10 @@ npm install mongoose-timestamps
 ```
 
 ```coffee
-mongooseTimestamps = require 'mongoose-timestamps'
+timestamps = require 'mongoose-timestamps'
+
+schema = new mongoose.Schema {}
+schema.plugin timestamps
 ```
 
 
