@@ -1,20 +1,21 @@
-# mongoose-timestamps
+# goodeggs-mongoose-timestamps
 
 Adds createdAt and updatedAt fields to any schema.
 
 Uses `node-clock` internally so stubbing `clock.now` will determine time value used for model timestamps.
 
-[![Build Status](http://img.shields.io/travis/goodeggs/mongoose-timestamps.svg?style=flat-square)](https://travis-ci.org/goodeggs/mongoose-timestamps)
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/goodeggs/mongoose-timestamps/blob/master/LICENSE.md)
+[![NPM version](http://img.shields.io/npm/v/goodeggs-mongoose-timestamps.svg?style=flat-square)](https://www.npmjs.org/package/goodeggs-mongoose-timestamps)
+[![Build Status](http://img.shields.io/travis/goodeggs/goodeggs-mongoose-timestamps.svg?style=flat-square)](https://travis-ci.org/goodeggs/goodeggs-mongoose-timestamps)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/goodeggs/goodeggs-mongoose-timestamps/blob/master/LICENSE.md)
 
 ## Usage
 
 ```
-npm install mongoose-timestamps
+npm install goodeggs-mongoose-timestamps
 ```
 
 ```coffee
-timestamps = require 'mongoose-timestamps'
+timestamps = require 'goodeggs-mongoose-timestamps'
 
 schema = new mongoose.Schema {}
 schema.plugin timestamps
@@ -22,11 +23,11 @@ schema.plugin timestamps
 
 ## Contributing
 
-Please follow our [Code of Conduct](https://github.com/goodeggs/mongoose-timestamps/blob/master/CODE_OF_CONDUCT.md)
+Please follow our [Code of Conduct](https://github.com/goodeggs/goodeggs-mongoose-timestamps/blob/master/CODE_OF_CONDUCT.md)
 when contributing to this project.
 
 ```
-$ git clone https://github.com/goodeggs/mongoose-timestamps && cd mongoose-timestamps
+$ git clone https://github.com/goodeggs/goodeggs-mongoose-timestamps && cd goodeggs-mongoose-timestamps
 $ npm install
 $ npm test
 ```
