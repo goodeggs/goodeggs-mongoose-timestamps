@@ -21,6 +21,20 @@ schema = new mongoose.Schema {}
 schema.plugin timestamps
 ```
 
+By default, it creates indices for both attributes named `timestamps_created_at` and `timestamps_updated_at`. To override
+this behavior:
+
+```coffee
+# Creates indices for both attributes by default
+schema.plugin timestamps
+
+# Does not create indices
+schema.plugin timestamps, createIndices: false
+
+# Only create updatedAt index, descending order
+schema.plugin timestamps, createIndices: {updatedAt: -1}
+```
+
 ## Contributing
 
 Please follow our [Code of Conduct](https://github.com/goodeggs/goodeggs-mongoose-timestamps/blob/master/CODE_OF_CONDUCT.md)
