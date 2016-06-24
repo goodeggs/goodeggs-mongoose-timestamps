@@ -12,17 +12,17 @@ schema = new mongoose.Schema
 schema.plugin timestamps
 TestTimestamps = mongoose.model('TestTimestamps', schema)
 
-schemaWithoutIndices =
+schemaWithoutIndexes =
   schema = new mongoose.Schema
     data: String
-schemaWithoutIndices.plugin timestamps, createIndices: false
-TestTimestampsWithoutIndices = mongoose.model('TestTimestampsWithoutIndices', schemaWithoutIndices)
+schemaWithoutIndexes.plugin timestamps, createIndexes: false
+TestTimestampsWithoutIndexes = mongoose.model('TestTimestampsWithoutIndexes', schemaWithoutIndexes)
 
-schemaWithCustomizedIndices =
+schemaWithCustomizedIndexes =
   schema = new mongoose.Schema
     data: String
-schemaWithCustomizedIndices.plugin timestamps, createIndices: {updatedAt: -1}
-TestTimestampsWithCustomizedIndices = mongoose.model('TestTimestampsWithCustomizedIndices', schemaWithCustomizedIndices)
+schemaWithCustomizedIndexes.plugin timestamps, createIndexes: {updatedAt: -1}
+TestTimestampsWithCustomizedIndexes = mongoose.model('TestTimestampsWithCustomizedIndexes', schemaWithCustomizedIndexes)
 
 
 describe 'timestamps', ->
@@ -39,20 +39,20 @@ describe 'timestamps', ->
         expect(created.createdAt).to.eql(created.updatedAt)
         done(err)
 
-    it 'creates indices by default', (done) ->
+    it 'creates indexes by default', (done) ->
       TestTimestamps.collection.getIndexes (err, indexes) ->
         expect(indexes.timestamp_created_at).to.be.ok
         expect(indexes.timestamp_updated_at).to.be.ok
         done(err)
 
-    it 'does not create indices if disabled', (done) ->
-      TestTimestampsWithoutIndices.collection.getIndexes (err, indexes) ->
+    it 'does not create indexes if disabled', (done) ->
+      TestTimestampsWithoutIndexes.collection.getIndexes (err, indexes) ->
         expect(indexes.timestamp_created_at).to.not.be.ok
         expect(indexes.timestamp_updated_at).to.not.be.ok
         done(err)
 
-    it 'customizes indices', (done) ->
-      TestTimestampsWithCustomizedIndices.collection.getIndexes (err, indexes) ->
+    it 'customizes indexes', (done) ->
+      TestTimestampsWithCustomizedIndexes.collection.getIndexes (err, indexes) ->
         expect(indexes.timestamp_created_at).to.not.be.ok
         expect(indexes.timestamp_updated_at).to.be.ok
         done(err)

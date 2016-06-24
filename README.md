@@ -21,18 +21,18 @@ schema = new mongoose.Schema {}
 schema.plugin timestamps
 ```
 
-By default, it creates indices for both attributes named `timestamps_created_at` and `timestamps_updated_at`. To override
+By default, it creates indexes for both attributes named `timestamps_created_at` and `timestamps_updated_at`. To override
 this behavior:
 
 ```coffee
-# Creates indices for both attributes by default
+# Creates indexes for both attributes by default
 schema.plugin timestamps
 
-# Does not create indices
-schema.plugin timestamps, createIndices: false
+# Does not create indexes
+schema.plugin timestamps, createIndexes: false
 
 # Only create updatedAt index, descending order
-schema.plugin timestamps, createIndices: {updatedAt: -1}
+schema.plugin timestamps, createIndexes: {updatedAt: -1}
 ```
 
 ## Contributing
