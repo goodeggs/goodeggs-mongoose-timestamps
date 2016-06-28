@@ -7,21 +7,21 @@ clock = require 'node-clock'
 
   timestamps = require 'goodeggs-mongoose-timestamps'
 
-  # Creates indexes for both attributes by default
+  # Creates indexes for updatedAt by default
   schema.plugin timestamps
 
   # Does not create indexes
   schema.plugin timestamps, createIndexes: false
 
-  # Only create updatedAt index, descending order
-  schema.plugin timestamps, createIndexes: {updatedAt: -1}
+  # Only create createdAt index, descending order
+  schema.plugin timestamps, createIndexes: {createdAt: -1}
 ###
 module.exports = (schema, {createIndexes} = {}) ->
   # Default is to create both indexes
   createIndexes ?= true
 
   if createIndexes is true
-    createIndexes = {createdAt: 1, updatedAt: 1}
+    createIndexes = {updatedAt: 1}
 
   schema.add
     updatedAt: {type: Date}
