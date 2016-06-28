@@ -23,7 +23,7 @@ schema.plugin timestamps
 
 ## Indexes
 
-By default, it creates an index for `updatedAt` named `timestamps_updated_at`. To override
+By default, it creates an index for `updatedAt` with spec `{updatedAt: 1}`. To override
 this behavior:
 
 ```coffee

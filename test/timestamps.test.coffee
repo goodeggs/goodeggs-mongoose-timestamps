@@ -49,20 +49,20 @@ describe 'timestamps', ->
 
     it 'creates updatedAt index by default', (done) ->
       TestTimestamps.collection.getIndexes (err, indexes) ->
-        expect(indexes.timestamp_created_at).to.not.be.ok
-        expect(indexes.timestamp_updated_at).to.be.ok
+        expect(indexes.createdAt_1).to.not.be.ok
+        expect(indexes.updatedAt_1).to.be.ok
         done(err)
 
     it 'does not create indexes if disabled', (done) ->
       TestTimestampsWithoutIndexes.collection.getIndexes (err, indexes) ->
-        expect(indexes.timestamp_created_at).to.not.be.ok
-        expect(indexes.timestamp_updated_at).to.not.be.ok
+        expect(indexes.createdAt_1).to.not.be.ok
+        expect(indexes.updatedAt_1).to.not.be.ok
         done(err)
 
     it 'customizes indexes', (done) ->
       TestTimestampsWithCustomizedIndexes.collection.getIndexes (err, indexes) ->
-        expect(indexes.timestamp_created_at).to.be.ok
-        expect(indexes.timestamp_updated_at).to.not.be.ok
+        expect(indexes['createdAt_-1']).to.be.ok
+        expect(indexes.updatedAt_1).to.not.be.ok
         done(err)
 
   describe 'update', ->

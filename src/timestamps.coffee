@@ -29,10 +29,10 @@ module.exports = (schema, {createIndexes} = {}) ->
 
   if createIndexes?.createdAt
     order = createIndexes.createdAt in [-1, 1] and createIndexes.createdAt or 1
-    schema.index {createdAt: order}, name: 'timestamp_created_at'
+    schema.index {createdAt: order}
   if createIndexes?.updatedAt
     order = createIndexes.updatedAt in [-1, 1] and createIndexes.updatedAt or 1
-    schema.index {updatedAt: order}, name: 'timestamp_updated_at'
+    schema.index {updatedAt: order}
 
 
   schema.pre 'save', (next) ->
