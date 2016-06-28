@@ -21,6 +21,25 @@ schema = new mongoose.Schema {}
 schema.plugin timestamps
 ```
 
+## Indexes
+
+By default, it creates an index for `updatedAt` named `timestamps_updated_at`. To override
+this behavior:
+
+```coffee
+# Creates indexes for updatedAt by default
+schema.plugin timestamps
+
+# Does not create indexes
+schema.plugin timestamps, createIndexes: false
+
+# Only create createdAt index, descending order
+schema.plugin timestamps, createIndexes: {createdAt: -1}
+```
+
+Note that it does not create an index on `createdAt`. An index on `createdAt` is redundant with the index already on `_id` which encodes the [document create time
+in the first 4 bytes](https://docs.mongodb.com/manual/reference/bson-types/#objectid).
+
 ## Contributing
 
 Please follow our [Code of Conduct](https://github.com/goodeggs/goodeggs-mongoose-timestamps/blob/master/CODE_OF_CONDUCT.md)
