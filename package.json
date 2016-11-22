@@ -23,7 +23,7 @@
   "devDependencies": {
     "coffee-script": ">=1.8.x",
     "mocha": "~1.x.x",
-    "mongoose": "~3.8.21",
+    "mongoose": "~3.8.23",
     "chai": "~1.10.0",
     "sinon": "~1.12.2",
     "mocha-sinon": "~1.1.4"
