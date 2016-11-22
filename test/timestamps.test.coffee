@@ -65,7 +65,7 @@ describe 'timestamps', ->
         expect(indexes.updatedAt_1).to.not.be.ok
         done(err)
 
-  describe 'update', ->
+  describe 'save', ->
     created = null
 
     beforeEach (done) ->
@@ -89,3 +89,30 @@ describe 'timestamps', ->
       created.save (err) ->
         expect(created.updatedAt).to.eql(created.createdAt)
         done(err)
+
+  describe 'update', ->
+    created = null
+
+    beforeEach (done) ->
+      @sinon.stub(clock, 'now') unless clock.now.returns
+      clock.now.returns clock.pacific '2012-04-01 12:00'
+      TestTimestamps.create {}, (err, obj) ->
+        created = obj
+        expect(created.createdAt).to.eql new Date(clock.pacific '2012-04-01 12:00')
+        done(err)
+
+    it 'sets updatedAt', (done) ->
+      clock.now.returns clock.pacific '2012-04-01 12:01'
+      created.data = 'some new value'
+      created.update {data: 'some new value'},  (err) ->
+        TestTimestamps.findOne {_id: created}, (err, created) ->
+          expect(created.updatedAt).to.eql new Date(clock.pacific '2012-04-01 12:01')
+          done(err)
+
+    # this is especially important for embedded docs whose updatedAt shouldn't change unless the embedded doc has a change
+    it 'leaves updatedAt unset without any value changes', (done) ->
+      clock.now.returns clock.pacific '2012-04-01 12:01'
+      created.update {}, (err) ->
+        TestTimestamps.findOne {_id: created}, (err, created) ->
+          expect(created.updatedAt).to.eql(created.createdAt)
+          done(err)

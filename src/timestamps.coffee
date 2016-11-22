@@ -41,3 +41,8 @@ module.exports = (schema, {createIndexes} = {}) ->
     @updatedAt = now if @isNew or @isModified()
     next()
 
+  schema.pre 'update', (next, updates) ->
+    if typeof updates is 'object' and Object.keys(updates).length
+      now = new Date clock.now()
+      updates.updatedAt = now
+    next()
