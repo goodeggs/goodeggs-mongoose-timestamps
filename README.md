@@ -1,8 +1,6 @@
 # goodeggs-mongoose-timestamps
 
-Adds createdAt and updatedAt fields to any schema.
-
-Uses `node-clock` internally so stubbing `clock.now` will determine time value used for model timestamps.
+Adds createdAt and updatedAt fields to any schema using Mongoose's built-in [timestamps schema option](http://mongoosejs.com/docs/guide.html#timestamps).
 
 [![NPM version](http://img.shields.io/npm/v/goodeggs-mongoose-timestamps.svg?style=flat-square)](https://www.npmjs.org/package/goodeggs-mongoose-timestamps)
 [![Build Status](http://img.shields.io/travis/goodeggs/goodeggs-mongoose-timestamps.svg?style=flat-square)](https://travis-ci.org/goodeggs/goodeggs-mongoose-timestamps)
@@ -39,6 +37,10 @@ schema.plugin timestamps, createIndexes: {createdAt: -1}
 
 Note that it does not create an index on `createdAt`. An index on `createdAt` is redundant with the index already on `_id` which encodes the [document create time
 in the first 4 bytes](https://docs.mongodb.com/manual/reference/bson-types/#objectid).
+
+## Testing
+
+To stub the values used to timestamp Mongoose objects, use [`sinon.useFakeTimers`](http://sinonjs.org/docs/#clock-api).
 
 ## Contributing
 
