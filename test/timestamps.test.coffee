@@ -48,36 +48,47 @@ describe 'timestamps', ->
         done(err)
 
     it 'creates updatedAt index by default', (done) ->
-      TestTimestamps.collection.getIndexes (err, indexes) ->
-        expect(indexes.createdAt_1).to.not.be.ok
-        expect(indexes.updatedAt_1).to.be.ok
-        done(err)
+      TestTimestamps.create {}, (err, created) ->
+        return done(err) if err?
+
+        TestTimestamps.collection.getIndexes (err, indexes) ->
+          expect(indexes.createdAt_1).to.not.be.ok
+          expect(indexes.updatedAt_1).to.be.ok
+          done(err)
 
     it 'does not create indexes if disabled', (done) ->
-      TestTimestampsWithoutIndexes.collection.getIndexes (err, indexes) ->
-        expect(indexes.createdAt_1).to.not.be.ok
-        expect(indexes.updatedAt_1).to.not.be.ok
-        done(err)
+      TestTimestampsWithoutIndexes.create {}, (err, created) ->
+        return done(err) if err?
+
+        TestTimestampsWithoutIndexes.collection.getIndexes (err, indexes) ->
+          expect(indexes.createdAt_1).to.not.be.ok
+          expect(indexes.updatedAt_1).to.not.be.ok
+          done(err)
 
     it 'customizes indexes', (done) ->
-      TestTimestampsWithCustomizedIndexes.collection.getIndexes (err, indexes) ->
-        expect(indexes['createdAt_-1']).to.be.ok
-        expect(indexes.updatedAt_1).to.not.be.ok
-        done(err)
+      TestTimestampsWithCustomizedIndexes.create {}, (err, created) ->
+        return done(err) if err?
+
+        TestTimestampsWithCustomizedIndexes.collection.getIndexes (err, indexes) ->
+          expect(indexes['createdAt_-1']).to.be.ok
+          expect(indexes.updatedAt_1).to.not.be.ok
+          done(err)
 
   describe 'save', ->
     created = null
 
     beforeEach (done) ->
-      @sinon.stub(clock, 'now') unless clock.now.returns
-      clock.now.returns clock.pacific '2012-04-01 12:00'
+      now = clock.pacific('2012-04-01 12:00')
+      timer = @sinon.useFakeTimers now
       TestTimestamps.create {}, (err, obj) ->
         created = obj
         expect(created.createdAt).to.eql new Date(clock.pacific '2012-04-01 12:00')
+        timer.restore()
         done(err)
 
+
     it 'sets updatedAt', (done) ->
-      clock.now.returns clock.pacific '2012-04-01 12:01'
+      @sinon.useFakeTimers clock.pacific('2012-04-01 12:01')
       created.data = 'some new value'
       created.save (err) ->
         expect(created.updatedAt).to.eql new Date(clock.pacific '2012-04-01 12:01')
@@ -85,7 +96,7 @@ describe 'timestamps', ->
 
     # this is especially important for embedded docs whose updatedAt shouldn't change unless the embedded doc has a change
     it 'leaves updatedAt unset without any value changes', (done) ->
-      clock.now.returns clock.pacific '2012-04-01 12:01'
+      @sinon.useFakeTimers clock.pacific('2012-04-01 12:01')
       created.save (err) ->
         expect(created.updatedAt).to.eql(created.createdAt)
         done(err)
@@ -94,15 +105,15 @@ describe 'timestamps', ->
     created = null
 
     beforeEach (done) ->
-      @sinon.stub(clock, 'now') unless clock.now.returns
-      clock.now.returns clock.pacific '2012-04-01 12:00'
+      timer = @sinon.useFakeTimers clock.pacific('2012-04-01 12:00')
       TestTimestamps.create {}, (err, obj) ->
         created = obj
         expect(created.createdAt).to.eql new Date(clock.pacific '2012-04-01 12:00')
+        timer.restore()
         done(err)
 
     it 'sets updatedAt', (done) ->
-      clock.now.returns clock.pacific '2012-04-01 12:01'
+      @sinon.useFakeTimers clock.pacific('2012-04-01 12:01')
       created.data = 'some new value'
       created.update {data: 'some new value'},  (err) ->
         TestTimestamps.findOne {_id: created}, (err, created) ->
@@ -111,7 +122,7 @@ describe 'timestamps', ->
 
     # this is especially important for embedded docs whose updatedAt shouldn't change unless the embedded doc has a change
     it 'leaves updatedAt unset without any value changes', (done) ->
-      clock.now.returns clock.pacific '2012-04-01 12:01'
+      @sinon.useFakeTimers clock.pacific('2012-04-01 12:01')
       created.update {}, (err) ->
         TestTimestamps.findOne {_id: created}, (err, created) ->
           expect(created.updatedAt).to.eql(created.createdAt)
