@@ -38,6 +38,10 @@ schema.plugin timestamps, createIndexes: {createdAt: -1}
 Note that it does not create an index on `createdAt`. An index on `createdAt` is redundant with the index already on `_id` which encodes the [document create time
 in the first 4 bytes](https://docs.mongodb.com/manual/reference/bson-types/#objectid).
 
+## Dependencies
+
+This module does not pull in an other dependencies but does require that your application is using Mongoose 4.4.7 or greater. That was the version that first supported setting the `timestamps` options directly on the schema with `set` rather than in the schema constructor.
+
 ## Testing
 
 To stub the values used to timestamp Mongoose objects, use [`sinon.useFakeTimers`](http://sinonjs.org/docs/#clock-api).
