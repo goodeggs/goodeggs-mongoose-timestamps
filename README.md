@@ -40,7 +40,7 @@ in the first 4 bytes](https://docs.mongodb.com/manual/reference/bson-types/#obje
 
 ## Dependencies
 
-This module does not pull in an other dependencies but does require that your application is using Mongoose 4.4.7 or greater. That was the version that first supported setting the `timestamps` options directly on the schema with `set` rather than in the schema constructor.
+This module does not pull in an other dependencies but does require that your application is using Mongoose 4.4.7 or greater. That was the version that first supported setting the `timestamps` option directly on the schema with `set` rather than in the schema constructor.
 
 ## Testing
 
