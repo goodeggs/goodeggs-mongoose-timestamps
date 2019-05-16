@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/goodeggs/goodeggs-mongoose-timestamps",
   "bugs": "https://github.com/goodeggs/goodeggs-mongoose-timestamps/issues",
-  "dependencies": {},
+  "dependencies": {
+    "mongoose": "^4.13.18"
+  },
   "devDependencies": {
     "coffee-script": ">=1.8.x",
     "mocha": "~1.x.x",
