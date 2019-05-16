@@ -17,15 +17,14 @@
   },
   "homepage": "https://github.com/goodeggs/goodeggs-mongoose-timestamps",
   "bugs": "https://github.com/goodeggs/goodeggs-mongoose-timestamps/issues",
-  "dependencies": {},
   "devDependencies": {
+    "chai": "~1.10.0",
     "coffee-script": ">=1.8.x",
     "mocha": "~1.x.x",
-    "mongoose": ">=4.4.7",
-    "chai": "~1.10.0",
-    "sinon": "~1.12.2",
     "mocha-sinon": "~1.1.4",
-    "node-clock": "~0.1.1"
+    "mongoose": "^4.13.18",
+    "node-clock": "~0.1.1",
+    "sinon": "~1.12.2"
   },
   "scripts": {
     "compile": "coffee --bare --compile --output lib/ src/",
