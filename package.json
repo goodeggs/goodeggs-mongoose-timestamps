@@ -1,6 +1,6 @@
 {
   "name": "goodeggs-mongoose-timestamps",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Adds createdAt and updatedAt fields to any schema",
   "author": "Good Eggs <open-source@goodeggs.com>",
   "contributors": [
