@@ -31,11 +31,10 @@ module.exports = (schema, options = {}) ->
   if createIndexes?.createdAt
     order = createIndexes.createdAt in [-1, 1] and createIndexes.createdAt or 1
     schema.on 'init', (modelCls) ->
-      modelCls.collection.ensureIndex { createdAt: order }, { background: true}
+      modelCls.collection.createIndex({createdAt: order}, {background: true})
 
   # Index updatedAt, but only when the schema is the root schema (not embedded in another document)
   if createIndexes?.updatedAt
     order = createIndexes.updatedAt in [-1, 1] and createIndexes.updatedAt or 1
     schema.on 'init', (modelCls) ->
-      modelCls.collection.ensureIndex { updatedAt: order }, { background: true }
-
+      modelCls.collection.createIndex({updatedAt: order}, {background: true})
